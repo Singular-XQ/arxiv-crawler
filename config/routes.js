@@ -20,8 +20,12 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': { view: 'pages/homepage' },
-  'GET /articles': 'CrawlingController.fetchStoredArticles',
-  'GET /articlesPage': 'CrawlingController.showArticlesPage',
+  'GET /fetchAndStoreArticles': { action: 'fetch-and-store-articles' },
+  'GET /showArticlesPage': { action: 'show-articles-page' },
+  'GET /showSearchPage': { action: 'view-search-manager' },
+  'GET /start-search': { action: 'start-search' },
+
+  'GET /scrapeArxiv': { action: 'scrape-arxiv' }
 
   /***************************************************************************
   *                                                                          *

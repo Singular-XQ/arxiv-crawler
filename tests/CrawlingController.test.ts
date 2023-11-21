@@ -1,5 +1,4 @@
-// FILEPATH: /home/error/devel/sxq/sails-crawler/api/controllers/CrawlingController.test.ts
-import { Request, Response } from 'express';
+import { Request, Response } from "typed-sails";
 import { CrawlingController } from './CrawlingController';
 import ArxivService from '../services/ArxivService';
 const Article = require('../models/Article');
@@ -10,7 +9,7 @@ jest.mock('../models/Article');
 describe('CrawlingController', () => {
     let controller: CrawlingController;
     let mockRequest: Partial<Request>;
-    let mockResponse: Partial<Response>;
+    let mockResponse: any;
 
     beforeEach(() => {
         controller = new CrawlingController();

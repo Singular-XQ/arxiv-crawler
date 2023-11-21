@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Searches</title>
+  <!-- Add CSS and other head elements here -->
+</head>
+
+<body>
+  <h1>Active ArXiv Searches</h1>
+  <form action="/start-search" method="get">
+    <input type="text" name="query" placeholder="Enter search query" required>
+    <button type="submit">Scrape arXiv</button>
+  </form>
+
+  <% searches.forEach(function(search) { %>
+    <div>
+      <h3>
+        <%= search.searchTerm %>
+      </h3>
+      <form action="/stop-search" method="get">
+        <input type="hidden" name="query" value="<%= search.searchTerm %>" required>
+        <button type="submit">stop search</button>
+      </form>
+      <form action="/start-search" method="get">
+        <input type="hidden" name="query" value="<%= search.searchTerm %>" required>
+        <button type="submit">start search</button>
+      </form>
+    </div>
+    <% }); %>
+</body>
+
+</html>

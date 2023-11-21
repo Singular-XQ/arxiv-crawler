@@ -1,7 +1,37 @@
-<div id="articles" v-cloak>
+<!DOCTYPE html>
+<html>
 
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/articles.less</em>, <em>assets/js/pages/articles.page.js</em>, and <em>api/controllers/view-articles.js</em>.)</p>
+<head>
+  <title>Articles</title>
+  <!-- Add CSS and other head elements here -->
+</head>
 
-</div>
-<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+<body>
+  <h1>ArXiv Articles</h1>
+  <form action="/scrapeArxiv" method="get">
+    <input type="text" name="query" placeholder="Enter search query" required>
+    <button type="submit">Scrape arXiv</button>
+  </form>
+  <div>
+    <%= articles.length %> articles have been scraped
+  </div>
+
+  <% articles.forEach(function(article) { %>
+    <div>
+      <h3>
+        <%= article.title %>
+      </h3>
+      <p>
+        <%= article.summary %>
+      </p>
+      <% article.authors.forEach(function(author) { %>
+        <p>
+          <%= author %>
+        </p>
+        <% }); %>
+          <a href="<%= article.links.find(link => link.rel === 'related').href %>" target="_blank">Download PDF</a>
+    </div>
+    <% }); %>
+</body>
+
+</html>
